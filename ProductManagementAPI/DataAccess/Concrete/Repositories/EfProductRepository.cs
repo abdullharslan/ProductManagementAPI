@@ -1,10 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using ProductManagementAPI.Core.Entities.Concrete;
-using ProductManagementAPI.DataAccess.Abstract;
 using ProductManagementAPI.DataAccess.Abstract.Repositories;
 using ProductManagementAPI.DataAccess.Context;
 
-namespace ProductManagementAPI.DataAccess.Concrete;
+namespace ProductManagementAPI.DataAccess.Concrete.Repositories;
 
 /*
  * EfProductRepository sınıfı, Entity Framework Core kullanarak ürünlere yönelik CRUD ve özel sorgu işlemleri gerçekleştiren bir repository'dir.
@@ -19,8 +18,7 @@ namespace ProductManagementAPI.DataAccess.Concrete;
 public class EfProductRepository : IProductRepository
 {
     private readonly ApplicationDbContext _context;
-
-    // Constructor, veritabanı konteksi (ApplicationDbContext) ile repository sınıfını başlatır.
+    
     public EfProductRepository(ApplicationDbContext context)
     {
         _context = context;
@@ -178,32 +176,52 @@ public class EfProductRepository : IProductRepository
     // Tüm ürünlerin fiyatlarını topluca günceller
     public async Task<bool> BulkUpdatePricesAsync(decimal percentage, bool increase = true)
     {
-        var products = await _context.Products.Where(p => p.IsActive).ToListAsync();
-        foreach (var product in products)
+        using var transaction = await _context.Database.BeginTransactionAsync();
+        try
         {
-            product.Price = increase
-                ? product.Price * (1 + percentage / 100)
-                : product.Price * (1 - percentage / 100);
-            product.UpdatedAt = DateTime.UtcNow;
-        }
+            var products = await _context.Products.Where(p => p.IsActive).ToListAsync();
+            foreach (var product in products)
+            {
+                product.Price = increase
+                    ? product.Price * (1 + percentage / 100)
+                    : product.Price * (1 - percentage / 100);
+                product.UpdatedAt = DateTime.UtcNow;
+            }
 
-        return true;
+            await transaction.CommitAsync();
+            return true;
+        }
+        catch
+        {
+            await transaction.RollbackAsync();
+            throw;
+        }
     }
 
     // Belirli ürünlerin stok miktarını topluca günceller
     public async Task<bool> BulkUpdateStockAsync(int[] productIds, int quantity)
     {
-        var products = await _context.Products
-            .Where(p => productIds.Contains(p.Id) && p.IsActive)
-            .ToListAsync();
-
-        foreach (var product in products)
+        using var transaction = await _context.Database.BeginTransactionAsync();
+        try
         {
-            product.StockQuantity = quantity;
-            product.UpdatedAt = DateTime.UtcNow;
+            var products = await _context.Products
+                .Where(p => productIds.Contains(p.Id) && p.IsActive)
+                .ToListAsync();
+
+            foreach (var product in products)
+            {
+                product.StockQuantity = quantity;
+                product.UpdatedAt = DateTime.UtcNow;
+            }
+
+            await transaction.CommitAsync();
+            return true;
         }
-        
-        return true;
+        catch
+        {
+            await transaction.RollbackAsync();
+            throw;
+        }
     }
 
     // Aktif ürünlerin ortalama fiyatını hesaplar
