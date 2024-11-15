@@ -1,7 +1,6 @@
 using ProductManagementAPI.Core.Entities.Concrete;
-using ProductManagementAPI.DataAccess.Abstract.Repositories;
 
-namespace ProductManagementAPI.DataAccess.Abstract;
+namespace ProductManagementAPI.DataAccess.Abstract.Repositories;
 
 /*
  * IProductRepository arayüzü, ürün yönetimi için gereken veri erişim işlemlerini sağlayan metotları tanımlar.

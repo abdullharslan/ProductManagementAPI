@@ -1,10 +1,10 @@
 using ProductManagementAPI.Core.Entities.Abstract;
 
-namespace ProductManagementAPI.DataAccess.Abstract;
+namespace ProductManagementAPI.DataAccess.Abstract.Repositories;
 
 /*
  * IEntityRepository arayüzü, genel veri erişim işlemleri için kullanılan temel metotları tanımlar.
-T tipindeki sınıflara (varlık sınıfları) uygulandığında, CRUD (Oluşturma, Okuma, Güncelleme, Silme) işlemlerini
+ * T tipindeki sınıflara (varlık sınıfları) uygulandığında, CRUD (Oluşturma, Okuma, Güncelleme, Silme) işlemlerini
  * standartlaştırır. Bu yapı, uygulamanın genel veri erişim katmanında tutarlılık sağlar.
  *
  * T Sınıfı Kısıtlamaları:
