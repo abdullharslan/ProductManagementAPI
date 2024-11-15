@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using ProductManagementAPI.Core.Entities.Concrete;
-using ProductManagementAPI.Core.Repositories.Abstract;
+using ProductManagementAPI.DataAccess.Abstract;
+using ProductManagementAPI.DataAccess.Abstract.Repositories;
 using ProductManagementAPI.DataAccess.Context;
 
-namespace ProductManagementAPI.Core.Repositories.Concrete;
+namespace ProductManagementAPI.DataAccess.Concrete;
 
 /*
  * EfProductRepository sınıfı, Entity Framework Core kullanarak ürünlere yönelik CRUD ve özel sorgu işlemleri gerçekleştiren bir repository'dir.

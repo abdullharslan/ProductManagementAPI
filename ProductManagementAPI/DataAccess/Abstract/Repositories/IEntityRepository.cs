@@ -1,6 +1,6 @@
 using ProductManagementAPI.Core.Entities.Abstract;
 
-namespace ProductManagementAPI.Core.Repositories.Abstract;
+namespace ProductManagementAPI.DataAccess.Abstract;
 
 /*
  * IEntityRepository arayüzü, genel veri erişim işlemleri için kullanılan temel metotları tanımlar.
