@@ -6,9 +6,10 @@ using ProductManagementAPI.DataAccess.Context;
 namespace ProductManagementAPI.DataAccess.Concrete.Repositories;
 
 /*
- * EfProductRepository sınıfı, Entity Framework Core kullanarak ürünlere yönelik CRUD ve özel sorgu işlemleri gerçekleştiren bir repository'dir.
- * Bu sınıf, ürün veritabanı işlemlerini yönetir ve ürünlerin eklenmesi, güncellenmesi, silinmesi, arama, filtreleme ve istatistiksel işlemleri gibi işlevsellikler sunar.
- * Ayrıca, toplu işlemler, sıralama ve tarih bazlı sorgulamalar gibi gelişmiş özelliklere sahiptir.
+ * EfProductRepository sınıfı, Entity Framework Core kullanarak ürünlere yönelik CRUD ve özel sorgu işlemleri
+ * gerçekleştiren bir repository'dir. Bu sınıf, ürün veritabanı işlemlerini yönetir ve ürünlerin eklenmesi,
+ * güncellenmesi, silinmesi, arama, filtreleme ve istatistiksel işlemleri gibi işlevsellikler sunar. Ayrıca, toplu
+ * işlemler, sıralama ve tarih bazlı sorgulamalar gibi gelişmiş özelliklere sahiptir.
  *
  * Özellikler:
  * - Uygulama veritabanındaki ürünlerle ilgili CRUD işlemleri gerçekleştiren metodlar.
