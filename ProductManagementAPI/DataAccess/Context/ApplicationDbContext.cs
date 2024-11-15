@@ -5,8 +5,10 @@ using ProductManagementAPI.DataAccess.Configuration;
 namespace ProductManagementAPI.DataAccess.Context;
 
 /*
- * ApplicationDbContext sınıfı, Entity Framework Core kullanarak veritabanı ile etkileşimi sağlayan temel veri erişim konteksidir.
- * Bu sınıf, uygulama veritabanı üzerinde işlem yapılacak olan modellerin (entity'ler) tanımlanmasını ve yapılandırılmasını sağlar.
+ * ApplicationDbContext sınıfı, Entity Framework Core kullanarak veritabanı ile etkileşimi sağlayan temel veri erişim
+ * konteksidir.
+ * Bu sınıf, uygulama veritabanı üzerinde işlem yapılacak olan modellerin (entity'ler) tanımlanmasını ve
+ * yapılandırılmasını sağlar.
  *
  * Özellikler:
  * - Products: Ürünleri temsil eden DbSet, ürünler tablosuna karşılık gelir.
